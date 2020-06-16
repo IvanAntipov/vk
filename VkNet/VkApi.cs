@@ -236,7 +236,7 @@ namespace VkNet
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+		public virtual VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			var answer = CallBase(methodName, parameters, skipAuthorization);
 
@@ -274,7 +274,7 @@ namespace VkNet
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
+		public virtual T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
 		{
 			var answer = CallBase(methodName, parameters, skipAuthorization);
 
@@ -658,7 +658,7 @@ namespace VkNet
 		/// <param name="skipAuthorization"> Пропустить авторизацию </param>
 		/// <returns> Ответ от vk.com в формате json </returns>
 		/// <exception cref="CaptchaNeededException"> Требуется ввести капчу </exception>
-		private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
+		protected string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
 		{
 			if (!parameters.ContainsKey("v"))
 			{
