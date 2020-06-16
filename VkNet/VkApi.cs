@@ -306,7 +306,7 @@ namespace VkNet
 
 		/// <inheritdoc />
 		[CanBeNull]
-		public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+		public virtual string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
 			if (!skipAuthorization && !IsAuthorized)
 			{
@@ -329,7 +329,7 @@ namespace VkNet
 
 		/// <inheritdoc />
 		[CanBeNull]
-		public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+		public virtual Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				Invoke(methodName, parameters, skipAuthorization));
